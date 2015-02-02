@@ -3,8 +3,8 @@ package models
 import (
 	"errors"
 	"fmt"
-	"github.com/lunny/xorm"
-	_ "github.com/mattn/go-sqlite3"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/go-xorm/xorm"
 	"toropress/helper"
 	//_ "github.com/lib/pq"
 	"os"
@@ -23,7 +23,7 @@ const (
 	pgDriver       = "postgres"
 	pgDrvFormat    = "user=%v dbname=%v sslmode=disable"
 	sqlite3Driver  = "sqlite3"
-	dbtype         = "sqlite"
+	dbtype         = "mysql"
 )
 
 type User struct {
@@ -192,7 +192,7 @@ func XConDb() (*xorm.Engine, error) {
 		return xorm.NewEngine("sqlite3", DbName)
 
 	case dbtype == "mysql":
-		return xorm.NewEngine("mysql", "user=mysql password=jn!@#9^&* dbname=mysql")
+		return xorm.NewEngine("mysql", "root:1987123@tcp(127.0.0.1:3306)/i4ak?charset=utf8")
 
 	case dbtype == "pgsql":
 		return xorm.NewEngine("postgres", "user=postgres password=jn!@#$%^&* dbname=pgsql sslmode=disable")

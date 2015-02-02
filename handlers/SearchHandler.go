@@ -12,7 +12,7 @@ type SearchHandler struct {
 
 func (self *SearchHandler) Get() {
 	if keyword := self.GetString("keyword"); keyword != "" {
-		page, _ := self.GetInt("page")
+		page, _ := self.GetInt64("page")
 		limit := 25
 
 		rcs := len(*models.SearchTopic(keyword, 0, 0, "id"))
